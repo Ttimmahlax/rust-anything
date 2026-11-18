@@ -110,4 +110,23 @@ mod tests {
         assert!(find("ts", "left-pad-but-new").is_none());
         assert!(find("nope", "json5").is_none());
     }
+
+    #[test]
+    fn ffmpeg_bindings_map_in_every_language() {
+        for (lang, name) in [
+            ("ts", "fluent-ffmpeg"),
+            ("python", "av"),
+            ("c", "<libavcodec/avcodec.h>"),
+            ("go", "github.com/asticode/go-astiav"),
+            ("java", "org.bytedeco.ffmpeg.global.avcodec"),
+        ] {
+            let m = find(lang, name).unwrap_or_else(|| panic!("{lang}: {name}"));
+            assert_eq!(
+                (m.crates, m.fit),
+                ("remade-ffmpeg", Fit::Partial),
+                "{lang}: {name}"
+            );
+        }
+        assert!(find("c", "<libavcodecx.h>").is_none());
+    }
 }

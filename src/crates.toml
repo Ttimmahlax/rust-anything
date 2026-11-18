@@ -205,6 +205,22 @@ crates = "-"
 fit = "none"
 note = "Dev server or UI framework: keep in JS."
 
+[[ts]]
+names = ["fluent-ffmpeg", "ffmpeg-static", "@ffmpeg/ffmpeg", "@ffmpeg/core"]
+crates = "remade-ffmpeg"
+fit = "partial"
+note = "Pure-Rust rebuild with an ffmpeg-compatible CLI; check your codecs against its table. ffmpeg-next binds the C libraries for full coverage."
+
+[[ts]]
+names = ["@discordjs/opus", "opusscript"]
+crates = "rusty-opus"
+fit = "good"
+
+[[ts]]
+names = ["lamejs"]
+crates = "rusty_mp3"
+fit = "good"
+
 [[python]]
 names = ["requests", "httpx", "urllib3", "aiohttp"]
 crates = "reqwest"
@@ -309,6 +325,17 @@ crates = "-"
 fit = "none"
 note = "Tooling, not runtime."
 
+[[python]]
+names = ["av", "ffmpeg-python", "ffmpeg", "imageio-ffmpeg"]
+crates = "remade-ffmpeg"
+fit = "partial"
+note = "Pure-Rust rebuild with an ffmpeg-compatible CLI; check your codecs against its table. ffmpeg-next binds the C libraries for full coverage."
+
+[[python]]
+names = ["opuslib"]
+crates = "rusty-opus"
+fit = "good"
+
 [[c]]
 names = ["<zlib.h>"]
 crates = "flate2"
@@ -391,6 +418,22 @@ names = ["<math.h>", "<string.h>", "<stdlib.h>", "<stdio.h>", "<ctype.h>", "<std
 crates = "std"
 fit = "good"
 
+[[c]]
+prefixes = ["<libavcodec/", "<libavformat/", "<libavutil/", "<libswscale/", "<libswresample/", "<libavfilter/"]
+crates = "remade-ffmpeg"
+fit = "partial"
+note = "Pure-Rust rebuild, not a binding: the libav* API does not carry over. ffmpeg-next binds the C libraries if you need it to."
+
+[[c]]
+names = ["<opus.h>", "<opus/opus.h>"]
+crates = "rusty-opus"
+fit = "good"
+
+[[c]]
+names = ["<lame/lame.h>", "<lame.h>"]
+crates = "rusty_mp3"
+fit = "good"
+
 [[go]]
 names = ["github.com/spf13/cobra", "github.com/urfave/cli", "github.com/urfave/cli/v2"]
 crates = "clap"
@@ -471,6 +514,12 @@ fit = "good"
 names = ["github.com/dlclark/regexp2"]
 crates = "fancy-regex"
 fit = "good"
+
+[[go]]
+names = ["github.com/u2takey/ffmpeg-go", "github.com/asticode/go-astiav", "github.com/giorgisio/goav"]
+crates = "remade-ffmpeg"
+fit = "partial"
+note = "Pure-Rust rebuild; check your codecs against its table. ffmpeg-next binds the C libraries for full coverage."
 
 [[ruby]]
 names = ["rails", "sinatra", "roda", "hanami"]
@@ -638,6 +687,12 @@ fit = "good"
 prefixes = ["com.ibm.icu"]
 crates = "icu"
 fit = "partial"
+
+[[java]]
+prefixes = ["org.bytedeco.ffmpeg", "org.bytedeco.javacv", "net.bramp.ffmpeg"]
+crates = "remade-ffmpeg"
+fit = "partial"
+note = "Pure-Rust rebuild; JavaCV's OpenCV side is not covered."
 
 [[php]]
 names = ["laravel/framework", "slim/slim", "symfony/framework-bundle", "laminas/laminas-mvc", "cakephp/cakephp", "yiisoft/yii2"]
